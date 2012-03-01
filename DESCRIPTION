@@ -1,5 +1,5 @@
 Package: Deducer
-Version: 0.7-4
+Version: 0.7-5
 Date: 2012-03-01
 Title: Deducer
 Author: Ian Fellows with contributions from others (see documentation).
@@ -18,8 +18,5 @@ Suggests: lawstat, Hmisc
 SystemRequirements: Java (>= 1.4), JRI
 License: GPL-2
 URL: http://www.deducer.org/manual.html http://www.fellstat.com
-X-CRAN-Comment: This package has been removed: it contained copies of
-        copyright code used contrary to its license and with no
-        acknowledegement of copyright.
 Repository: CRAN
-Date/Publication: 2012-09-10 06:41:45
+Date/Publication: 2012-10-22 18:55:29
