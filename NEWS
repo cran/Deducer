@@ -1,3 +1,7 @@
+0.7-5
+    o	Fixed bug introduced in 0.7-3 where VariableSelector could cause freeze upon clicking ad/remove
+        in conjunction with large data.frames.
+    o	Removed Quaqua laf
 0.7-3
     o	Removed ability to calculate mid p-values and cramer's V
     o   moved back to GPL-2   

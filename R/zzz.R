@@ -31,27 +31,27 @@
     }
 }
 
-.jChooserMacLAF<-function(){
-
-	if(Sys.info()[1]!="Darwin") stop("Silly rabbit, Mac Look And Feel is only for Macs!")
-	
-	.jaddClassPath("./System/Library/Java")
-	.jaddLibrary("quaqua",system.file("java/quaqua","libquaqua.jnilib",package="Deducer"))
-	.jaddLibrary("quaqua64",system.file("java/quaqua","libquaqua64.jnilib",package="Deducer"))
-	.jpackage("Deducer","quaqua.jar")
-	
-	#HashSet <- J("java.util.HashSet")
-	QuaquaManager <- J("ch.randelshofer.quaqua.QuaquaManager")
-	
-	#excludes <- new(HashSet)
-	#excludes$add("TitledBorder")
-	#excludes$add("Button")
-	#QuaquaManager$setExcludedUIs(excludes)
-	
-	J("java.lang.System")$setProperty("Quaqua.visualMargin","0,0,0,0")
-	
-	J("javax.swing.UIManager")$setLookAndFeel(QuaquaManager$getLookAndFeel())
-}
+#.jChooserMacLAF<-function(){
+#
+#	if(Sys.info()[1]!="Darwin") stop("Silly rabbit, Mac Look And Feel is only for Macs!")
+#	
+#	.jaddClassPath("./System/Library/Java")
+#	.jaddLibrary("quaqua",system.file("java/quaqua","libquaqua.jnilib",package="Deducer"))
+#	.jaddLibrary("quaqua64",system.file("java/quaqua","libquaqua64.jnilib",package="Deducer"))
+#	.jpackage("Deducer","quaqua.jar")
+#	
+#	#HashSet <- J("java.util.HashSet")
+#	QuaquaManager <- J("ch.randelshofer.quaqua.QuaquaManager")
+#	
+#	#excludes <- new(HashSet)
+#	#excludes$add("TitledBorder")
+#	#excludes$add("Button")
+#	#QuaquaManager$setExcludedUIs(excludes)
+#	
+#	#J("java.lang.System")$setProperty("Quaqua.visualMargin","0,0,0,0")
+#	
+#	J("javax.swing.UIManager")$setLookAndFeel(QuaquaManager$getLookAndFeel())
+#}
 
 .assign.classnames <- function(){
 	DeducerMain <<- J("org.rosuda.deducer.Deducer")
@@ -284,8 +284,8 @@ JLabel <- NULL
 	.registerDialog("Interactive Parallel Coordinate Plot", .makeIpcpDialog)
 	.registerDialog("Paired Test", .makePairedTestDialog)
 
-	if(J("org.rosuda.deducer.toolkit.DeducerPrefs")$USEQUAQUACHOOSER && Sys.info()[1]=="Darwin")
-		.jChooserMacLAF()
+#	if(J("org.rosuda.deducer.toolkit.DeducerPrefs")$USEQUAQUACHOOSER && Sys.info()[1]=="Darwin")
+#		.jChooserMacLAF()
 	
 } 
 .onUnload <- function(libpath){
