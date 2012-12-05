@@ -1,3 +1,9 @@
+0.7-6
+    o	Fixed bug where dialogs written in R would sometimes print debuging info (Thanks to Vincent Nijs for the report)
+    o	Fixed incorrect spelling of "Purples" in plot builder (thanks to Kieran Short for the report)
+    o	Fixed improper saving of guides in plot builder (thanks to Kieran Short for the report)
+    o	Fixed reset bug in correlation dialog (Thanks to Vincent Nijs for the report)
+    o	Updated for ggplot2 0.9.3
 0.7-5
     o	Fixed bug introduced in 0.7-3 where VariableSelector could cause freeze upon clicking ad/remove
         in conjunction with large data.frames.
