@@ -47,15 +47,15 @@ oneway.plot<-function(formula,data=NULL,alpha=.2,
 		if(n.var==1)
 			p<-p+ ylab(dat[1,3]) 
 		else 
-			p<-p+facet_wrap(~Variable,scales="free")+ylab("")
+			p<-p+facet_wrap(~Variable,scales="free_y")+ylab("")
 	}else{
 		if(n.var==1) 
 			p<-p+ylab(paste("Scaled",dat[1,3])) 
 		else 
-			p<-p+facet_grid(Variable~.,scales="free")+ylab("Standardized Value")
+			p<-p+facet_grid(Variable~.,scales="free_y")+ylab("Standardized Value")
 	}
 	fn<-formula[[3]]
 	fact.name<-if(is.call(fn)) format(fn) else as.character(fn)
-	p<-p+xlab(fact.name)+coord_flip()
+	p<-p+xlab(fact.name)#+coord_flip()
 	p
 }

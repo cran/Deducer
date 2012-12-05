@@ -52,9 +52,9 @@ onesample.plot<-function(variables,data=NULL,test.value,scale=FALSE,type="hist",
 				p<-p+ geom_vline(xintercept = test.value,colour="red",size=1.5)
 		}else if(type=="box" && !missing("test.value"))
 			p<-p+ geom_hline(yintercept = test.value,colour="red",size=1.5)+
-					jit+box+coord_flip()+o
+					jit+box+o
 		else if(type=="box")
-			p<-p+jit+box+coord_flip()+o + if(ncol(vars)<1.5) ylab(names(vars)[1]) else ylab("Value")
+			p<-p+jit+box+o + if(ncol(vars)<1.5) ylab(names(vars)[1]) else ylab("Value")
 			
 	}
 	p
