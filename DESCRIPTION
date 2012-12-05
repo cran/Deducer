@@ -1,5 +1,5 @@
 Package: Deducer
-Version: 0.7-6
+Version: 0.7-6.1
 Date: 2012-12-05
 Title: Deducer
 Author: Ian Fellows with contributions from others (see documentation).
@@ -13,13 +13,15 @@ Description: An intuitive, cross-platform graphical data analysis
         Dialogs have also been integrated into the Windows Rgui.
 Depends: R (>= 2.15.0), rJava (>= 0.8-4), ggplot2 (>= 0.9.3), scales
         (>= 0.2.2), JGR(>= 1.7-10), car, multcomp, effects, foreign,
-        plyr, e1071
+        plyr, e1071, MASS
 Suggests: lawstat, Hmisc
 SystemRequirements: Java (>= 1.4), JRI
 License: GPL-2
 URL: http://www.deducer.org/manual.html http://www.fellstat.com
+Packaged: 2013-10-28 07:55:19 UTC; ripley
+NeedsCompilation: no
 X-CRAN-Comment: Earlier versions of this package have been removed: it
         contained copies of copyright code used contrary to its license
-        and with no acknowledegement of copyright.
+        and with no acknowledgment of copyright.
 Repository: CRAN
-Date/Publication: 2012-12-05 20:30:59
+Date/Publication: 2013-10-28 08:58:59

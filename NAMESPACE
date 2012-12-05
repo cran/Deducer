@@ -1,3 +1,5 @@
 exportPattern("[[:alpha:]]+")
 import(rJava)
 import(JGR)
+import(MASS, car, e1071, effects, foreign, ggplot2, multcomp, plyr, scales)
+
