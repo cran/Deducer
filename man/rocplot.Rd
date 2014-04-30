@@ -24,6 +24,7 @@ Ian Fellows adapted from the lroc function by Virasakdi Chongsuvivatwong
   a ggplot object
 }
 \examples{
-model.glm <- glm(formula=income>5930.5 ~ education + women + type,family=binomial(),data=Prestige,na.action=na.omit)
+model.glm <- glm(formula=income>5930.5 ~ education + women + type,
+	family=binomial(),data=Prestige,na.action=na.omit)
 rocplot(model.glm)
 }

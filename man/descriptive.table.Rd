@@ -7,9 +7,13 @@
     Table of descriptive statistics, possibly stratified
 }
 \usage{
-descriptive.table(vars,strata,data,func.names = c("Mean","St. Deviation","Median",
-								"25th Percentile","75th Percentile",
-								"Minimum","Maximum","Skew","Kurtosis","Valid N"),func.additional)
+descriptive.table(vars,
+	strata,
+	data,
+	func.names = c("Mean","St. Deviation","Median",
+		"25th Percentile","75th Percentile",
+		"Minimum","Maximum","Skew","Kurtosis","Valid N"),
+	func.additional)
 }
 \arguments{
   \item{vars}{A variable or data.frame containing variables on which to run descriptive statistics.}

@@ -28,7 +28,9 @@
   functions pertaining to GUI development
 }
 \usage{
-addComponent(container, component, top, right, bottom, left, topType = "REL", rightType = "REL", bottomType = "REL", leftType = "REL")
+addComponent(container, component, top, right, bottom, 
+	left, topType = "REL", rightType = "REL", bottomType = "REL", 
+	leftType = "REL")
 getSize(component)
 setSize(component,width,height)
 execute(cmd)

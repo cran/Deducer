@@ -108,20 +108,33 @@ JLabel <- NULL
 .dialogGenerators <- NULL
 .windowsGUI <- NULL
 
+
+.onAttach <- function(libname, pkgname){
+	if(!is.null(.startupMsgs))
+		packageStartupMessage(.startupMsgs)
+}
+
 .onLoad <- function(libname, pkgname) { 
-	#de <- as.environment(match("package:Deducer", search()))
-	#jgrEnv <- try(as.environment(match("package:JGR", search())),silent=TRUE)
-	#if(inherits(jgrEnv,"try-error")){
-	#	packageStartupMessage("\nNamespace for JGR could not be found\n")
-	#	.deducer <<- .jnull()
-	#	.deducer.loaded <<- TRUE
-	#	.jgr <<-FALSE
-	#	.windowsGUI <<- exists("winMenuAdd")	
-	#	return(TRUE)
-	#}
+	
+	.imports <- parent.env(topenv())
+	.i.par <- parent.env(.imports)
+	
+	#handle messages on .onAttach
+	ipe <- new.env(parent=.i.par)
+	attr(ipe, "name") <- "volatiles:Deducer"
+	parent.env(.imports) <- ipe
+	ipe$.startupMsgs <- NULL
+	startupMessage <- function(x){
+		if(is.null(ipe$.startupMsgs))
+			ipe$.startupMsgs <- x
+		else
+			ipe$.startupMsgs <- paste(ipe$.startupMsgs,x,sep="\n")
+	}
+	
+	
 	.jgr <<- try(any(.jcall("java/lang/System","S","getProperty","main.class")=="org.rosuda.JGR.JGR"),silent=TRUE)
 	if(class(.jgr) %in% "try-error"){
-		packageStartupMessage("\nNote: Problem initiating rJava. The Java GUI will not be available.\n")
+		startupMessage("\nNote: Problem initiating rJava. The Java GUI will not be available.\n")
 		.deducer <<- .jnull()
 		.deducer.loaded <<- TRUE
 		.jgr <<-FALSE
@@ -131,7 +144,7 @@ JLabel <- NULL
 	
 
 	if(!is.null(getOption("DeducerNoGUI")) && getOption("DeducerNoGUI")){
-		packageStartupMessage("\nLoading Deducer without GUI. If you wish the GUI to load, run options(DeducerNoGUI=FALSE) before loading Deducer\n")
+		startupMessage("\nLoading Deducer without GUI. If you wish the GUI to load, run options(DeducerNoGUI=FALSE) before loading Deducer\n")
 		.deducer <<- .jnull()
 		.deducer.loaded <<- TRUE
 		.windowsGUI <<- exists("winMenuAdd")
@@ -139,7 +152,7 @@ JLabel <- NULL
 	}
 
 	if (nzchar(Sys.getenv("NOAWT")) && .jgr!=TRUE) {
-		packageStartupMessage("\nNOTE: Environmental variable NOAWT set. Loading Deducer without GUI.\n")
+		startupMessage("\nNOTE: Environmental variable NOAWT set. Loading Deducer without GUI.\n")
 		.deducer <<- .jnull()
 		.deducer.loaded <<- TRUE
 		.jgr <<-FALSE
@@ -149,8 +162,8 @@ JLabel <- NULL
 	
 	jriOK <- try(.jinit(),silent=TRUE)
 	if(class(jriOK) %in% "try-error"){
-		packageStartupMessage("\nNote: Problem initiating JRI. The Java GUI will not be available.\n")
-		#packageStartupMessage(jriOK)
+		startupMessage("\nNote: Problem initiating JRI. The Java GUI will not be available.\n")
+		#startupMessage(jriOK)
 		.deducer <<- .jnull()
 		.deducer.loaded <<- TRUE
 		.jgr <<-FALSE
@@ -160,8 +173,8 @@ JLabel <- NULL
 	
 	jriOK <- try(.jengine(TRUE),silent=TRUE)
 	if(class(jriOK) %in% "try-error"){
-		packageStartupMessage("\nNote: Problem initiating JRI. Make sure you built R with shared libraries The Java GUI will not be available.\n")
-		#packageStartupMessage(jriOK)
+		startupMessage("\nNote: Problem initiating JRI. Make sure you built R with shared libraries The Java GUI will not be available.\n")
+		#startupMessage(jriOK)
 		.deducer <<- .jnull()
 		.deducer.loaded <<- TRUE
 		.jgr <<-FALSE
@@ -174,8 +187,8 @@ JLabel <- NULL
 	
 	.deducer<-try(.jnew("org/rosuda/deducer/Deducer",.jgr),silent=TRUE)
 	if(class(deducer) %in% "try-error"){
-		packageStartupMessage("Note: Unable to start Deducer's Java class. The Java GUI will not be available.")
-		#packageStartupMessage(deducer)
+		startupMessage("Note: Unable to start Deducer's Java class. The Java GUI will not be available.")
+		#startupMessage(deducer)
 		.deducer <<- .jnull()
 		.deducer.loaded <<- TRUE
 		.windowsGUI <<- exists("winMenuAdd")
@@ -217,14 +230,16 @@ JLabel <- NULL
 			winMenuAdd("Plots")
 			winMenuAddItem("Plots", "Open plot", "deducer('Open plot')")
 			winMenuAddItem("Plots", "Plot builder", "deducer('Plot builder')")			
-			packageStartupMessage("\n\nDeducer has been loaded from within the Windows Rgui. 
+			startupMessage("\n\nDeducer has been loaded from within the Windows Rgui. 
 				For the best experience, you are encouraged to use JGR console which can be
 				downloaded from: http://jgr.markushelbig.org/\n")
 			.windowsGUI <<- TRUE
-		}
+		}else if(!.jgr || !.jcall("org/rosuda/deducer/Deducer", "Z", "isJGR") )
+			startupMessage("\n\nNote Non-JGR console detected:\n\tDeducer is best used from within JGR (http://jgr.markushelbig.org/).
+\tTo Bring up GUI dialogs, type deducer().\n")
 	}else if(!.jgr || !.jcall("org/rosuda/deducer/Deducer", "Z", "isJGR") )
-		packageStartupMessage("\n\nNote Non-JGR console detected:\n\tDeducer is best used from within JGR (http://jgr.markushelbig.org/).
-						\tTo Bring up GUI dialogs, type deducer().\n")
+		startupMessage("\n\nNote Non-JGR console detected:\n\tDeducer is best used from within JGR (http://jgr.markushelbig.org/).
+\tTo Bring up GUI dialogs, type deducer().\n")
 
 	##sort of
 	deducer.addMenu("File")
@@ -286,7 +301,7 @@ JLabel <- NULL
 
 #	if(J("org.rosuda.deducer.toolkit.DeducerPrefs")$USEQUAQUACHOOSER && Sys.info()[1]=="Darwin")
 #		.jChooserMacLAF()
-	
+
 } 
 .onUnload <- function(libpath){
 	#de <- as.environment(match("package:Deducer", search()))

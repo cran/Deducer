@@ -5,9 +5,10 @@
   Print object of class \code{"contin.table"} in nice layout.
 }
 \usage{
-\method{print}{contin.table}(x,digits=3,prop.r=TRUE,prop.c=TRUE,prop.t=TRUE,
-						expected.n=FALSE,residuals=FALSE,std.residuals=FALSE,
-						adj.residuals=FALSE,no.tables=FALSE,...)
+\method{print}{contin.table}(
+	x,digits=3,prop.r=TRUE,prop.c=TRUE,prop.t=TRUE,
+	expected.n=FALSE,residuals=FALSE,std.residuals=FALSE,
+	adj.residuals=FALSE,no.tables=FALSE,...)
 }
 \arguments{
   \item{x}{Object of class \code{"contin.table"}.}

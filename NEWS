@@ -1,3 +1,11 @@
+0.7-7
+    o	Fixed factor editing bug. (Thanks to Rob Camp for the report)
+    o	Fixed small rendering issue in plot builder facets.
+    o	Added help link for quick plots and templates. (Thanks to Jane Carlen for the report)
+    o	Moved many packages from Depends to Imports to avoid needless top level namespace objects.
+    o	Added java thread pool to avoid out-of-memory errors on low memory systems.
+    o	Datasets with masked names (such as "sample") are now properly handled by data.frame selectors. (thanks to Lurie Malai for the report)
+    o	Added ability to export predictions to new datasets in linear/logistic/GLM models.
 0.7-6
     o	Fixed bug where dialogs written in R would sometimes print debuging info (Thanks to Vincent Nijs for the report)
     o	Fixed incorrect spelling of "Purples" in plot builder (thanks to Kieran Short for the report)
@@ -5,7 +13,7 @@
     o	Fixed reset bug in correlation dialog (Thanks to Vincent Nijs for the report)
     o	Updated for ggplot2 0.9.3
 0.7-5
-    o	Fixed bug introduced in 0.7-3 where VariableSelector could cause freeze upon clicking ad/remove
+    o	Fixed bug introduced in 0.7-3 where VariableSelector could cause freeze upon clicking add/remove
         in conjunction with large data.frames.
     o	Removed Quaqua laf
 0.7-3
