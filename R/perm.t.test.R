@@ -13,13 +13,8 @@ perm.t.test<-function(x,y,statistic=c("t","mean"),
 	dat<-c(x,y)	
 	if(statistic=="mean"){
 		METHOD<-paste("Two-Sample permutation test using mean difference (B=", B,")")
-		if(ny<nx){
-			stat<-sum(y)
-			nmin<-ny
-		}else{
-			stat<-sum(x)
-			nmin<-nx
-		}
+		stat<-sum(y)
+		nmin<-ny
 		samp<-replicate(B,sum(sample(dat,nmin)))
 		STAT<-mean(x)-mean(y)
 		names(STAT)<-"Mean Difference"
