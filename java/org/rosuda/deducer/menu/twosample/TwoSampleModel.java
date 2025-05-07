@@ -147,14 +147,14 @@ public class TwoSampleModel{
 				(optMod.digits.trim().equals("<auto>") ? "\n)" : ",\n\tdigits="+optMod.digits+")")+"\n";
 		}
 		if(doBM){
-			String packStatus = Deducer.requirePackage("lawstat");
+			String packStatus = Deducer.requirePackage("brunnermunzel");
 			if(packStatus=="not-installed"){
-				JOptionPane.showMessageDialog(null, "Package lawstat must be installed in order to do the Brunner-Munszel test");
+				JOptionPane.showMessageDialog(null, "Package brunnermunzel must be installed in order to do the Brunner-Munszel test");
 				return false;
 			}else if(packStatus=="installed")
-				cmd+=("library(lawstat)")+"\n";
+				cmd+=("library(brunnermunzel)")+"\n";
 			cmd += "print(two.sample.test(formula="+outcomes+" ~ "+factor+",\n\t\tdata="+subn+
-				",\n\t\ttest=brunner.munzel.test"+
+				",\n\t\ttest=brunnermunzel.test"+
 				(optMod.confLevel==.95 ? "" : ",\n\t\tconf.level="+optMod.confLevel)+	
 				",\n\t\talternative=\""+optMod.alternative+"\""+
 			")"+

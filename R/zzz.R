@@ -107,11 +107,11 @@ JLabel <- NULL
 .dialogs <- list()
 .dialogGenerators <- NULL
 .windowsGUI <- NULL
-
+.vol <- new.env()
 
 .onAttach <- function(libname, pkgname){
-	if(!is.null(.startupMsgs))
-		packageStartupMessage(.startupMsgs)
+	if(!is.null(.vol$.startupMsgs))
+		packageStartupMessage(.vol$.startupMsgs)
 }
 
 .onLoad <- function(libname, pkgname) { 
@@ -120,15 +120,16 @@ JLabel <- NULL
 	.i.par <- parent.env(.imports)
 	
 	#handle messages on .onAttach
-	ipe <- new.env(parent=.i.par)
-	attr(ipe, "name") <- "volatiles:Deducer"
-	parent.env(.imports) <- ipe
-	ipe$.startupMsgs <- NULL
+	#ipe <- new.env(parent=.i.par)
+	#attr(ipe, "name") <- "volatiles:Deducer"
+	#parent.env(.imports) <- ipe
+	#ipe$.startupMsgs <- NULL
+	.vol$.startupMsg <- NULL
 	startupMessage <- function(x){
-		if(is.null(ipe$.startupMsgs))
-			ipe$.startupMsgs <- x
+		if(is.null(.vol$.startupMsgs))
+			.vol$.startupMsgs <- x
 		else
-			ipe$.startupMsgs <- paste(ipe$.startupMsgs,x,sep="\n")
+			.vol$.startupMsgs <- paste(.vol$.startupMsgs,x,sep="\n")
 	}
 	
 	
@@ -202,7 +203,7 @@ JLabel <- NULL
 	
 	if(exists("winMenuAdd")){
 		temp<-try(utils::winMenuAdd("Deducer"),silent=TRUE)
-		if(class(temp)!="try-error"){
+		if(!inherits(temp, "try-error")){
 			utils::winMenuAddItem("Deducer", "Open Data", "deducer('Open Data')")
 			utils::winMenuAddItem("Deducer", "Save Data", "deducer('Save Data')")
 			utils::winMenuAddItem("Deducer", "Data viewer", "deducer('Data viewer')")
@@ -216,6 +217,7 @@ JLabel <- NULL
 			utils::winMenuAddItem("Data", "Transpose", "deducer('Transpose')")			
 			utils::winMenuAddItem("Data", "Merge", "deducer('Merge')")
 			utils::winMenuAddItem("Data", "Subset", "deducer('Subset')")
+			utils::winMenuAddItem("Data", "Compute", "deducer('Compute')")
 			utils::winMenuAdd("Analysis")
 			utils::winMenuAddItem("Analysis", "Frequencies", "deducer('Frequencies')")
 			utils::winMenuAddItem("Analysis", "Descriptives", "deducer('Descriptives')")
@@ -272,8 +274,8 @@ JLabel <- NULL
 	
 	data.choices<-c("Edit Factor","Recode Variables","Transform",
 			"Reset Row Names","Sort","Transpose","Merge",
-			"Subset")
-	data.cmds<-c("factor","recode","transform","reset rows","sort","trans","merge","subset")
+			"Subset", "Compute")
+	data.cmds<-c("factor","recode","transform","reset rows","sort","trans","merge","subset", "compute")
 	populate.items(data.choices,data.cmds,"Data")
 	
 	plot.choices<-c("Open plot","Plot builder")

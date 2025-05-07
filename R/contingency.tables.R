@@ -137,7 +137,7 @@ print.contin.table<-function(x,digits=3,prop.r=TRUE,prop.c=TRUE,prop.t=TRUE,
 						expected.n=FALSE,residuals=FALSE,std.residuals=FALSE,adj.residuals=FALSE,no.tables=FALSE,...){
 	tab<-x
 	for(index in 1:length(tab)){
-		if(class(tab[[index]])!="single.table"){
+		if(!inherits(tab[[index]], "single.table")){
 			print(tab[[index]],...)
 			next
 		}else if(no.tables)
@@ -263,7 +263,7 @@ extract.counts<-function(tables){
 	result<-list()
 	for(j in 1:length(tables)){
 		table<-tables[[j]]
-		table.list<-lapply(table,function(x) if(class(x)=="single.table") x$table)
+		table.list<-lapply(table,function(x) if(inherits(x,"single.table")) x$table)
 		table.list<-table.list[sapply(table.list,function(x) !is.null(x))]
 		len<-length(table.list)
 		rownam<-c()
@@ -288,12 +288,12 @@ add.cross.strata.test<-function(tables,name,htests,types=c("asymptotic","monte.c
 		htests<-list(htests)
 	if(length(htests)!=length(types))
 		stop("type and tests must be the same length")
-	if(class(tables)!="contingency.tables")
+	if(!inherits(tables,"contingency.tables"))
 		stop("tables is not a contingency.tables object")
 
 	count.tables<-extract.counts(tables)
 	for(i in 1:length(tables)){
-		if(class(tables[[i]])!="contin.table")
+		if(!inherits(tables[[i]], "contin.table"))
 			next
 		tests<-list(stratum = "Cross Strata",
 							asymptotic=if("asymptotic" %in% types) 
@@ -328,15 +328,15 @@ add.test<-function(tables,name,htests,types=c("asymptotic","monte.carlo","exact"
 		htests<-list(htests)
 	if(length(htests)!=length(types))
 		stop("type and tests must be the same length")
-	if(class(tables)!="contingency.tables")
+	if(!inherits(tables,"contingency.tables"))
 		stop("tables is not a contingency.tables object")
 	for(i in 1:length(tables)){
-		if(class(tables[[i]])!="contin.table")
+		if(!inherits(tables[[i]],"contin.table"))
 			next
 		tests<-list()
 		for(j in 1:length(tables[[i]])){
 			tab<-tables[[i]]
-			if(class(tab[[j]])!="single.table")
+			if(!inherits(tab[[j]],"single.table"))
 				next
 			tests[[j]]<-list(stratum = names(tab)[j],
 								asymptotic=if("asymptotic" %in% types) 
@@ -349,7 +349,7 @@ add.test<-function(tables,name,htests,types=c("asymptotic","monte.carlo","exact"
 												try(htests[[which(types=="exact")]](tab[[j]]$table))
 											else NA)
 			tests[[j]]<-tests[[j]][!is.na(tests[[j]])]
-			invalid<-sapply(tests[[j]],function(x) class(x)=="try-error")
+			invalid<-sapply(tests[[j]],function(x) inherits(x,"try-error"))
 			htestNA<-structure(list(statistic = NA, parameter = NA, 
         		p.value = NA, method = "", data.name = ""), class = "htest")
         	for(index in 1:length(tests[[j]]))
@@ -443,7 +443,7 @@ add.kruskal<-function(tables,nominal=c("both","rows","cols")){
 
 
 contin.tests.to.table<-function(tests,test.digits=3,...){
-	if(class(tests)!="contin.tests")
+	if(!inherits(tests,"contin.tests"))
 		stop("tests are not of class contin.tests")
 	cat("\n\n\n",sep="")
 	any.mc<-any(sapply(tests , function(test) sapply(test, function(x) !is.null(x$monte.carlo))))
@@ -637,7 +637,7 @@ contingency.tables<-function (row.vars, col.vars,stratum.var, data=NULL, missing
     		CPC <- prop.table(t, 2)
     		CPT <- prop.table(t)
 			CST <- try(suppressWarnings(chisq.test(t, correct = FALSE)),silent=TRUE)
-			if(class(CST)!="htest")
+			if(!inherits(CST,"htest"))
 				CST<-list(expected=t*NA)
     		GT <- sum(t)
     		if (length(dim(x) == 2)) 

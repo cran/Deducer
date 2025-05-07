@@ -1,0 +1,30 @@
+\name{Helpers}
+\alias{.assign.classnames}
+\alias{.deducer}
+\alias{.deducer.loaded}
+\alias{.deducerExecute}
+\alias{.dialogGenerators}
+\alias{.dialogs}
+\alias{.getDialog}
+\alias{.jgr}
+\alias{.makeIbarDialog}
+\alias{.makeIboxLongDialog}
+\alias{.makeIboxWideDialog}
+\alias{.makeIhistDialog}
+\alias{.makeImosaicDialog}
+\alias{.makeIpcpDialog}
+\alias{.makeIplotDialog}
+\alias{.makePairedTestDialog}
+\alias{.onUnload}
+\alias{.registerDialog}
+\alias{.vol}
+\alias{.windowsGUI}
+\title{
+  Helpers
+}
+\description{
+  GUI helpers
+}
+\usage{
+.assign.classnames()
+}

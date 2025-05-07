@@ -33,10 +33,6 @@ values >=0 to 1 and all values <0 to missing, we could use (\code{"0:Hi->1; else
 \author{
 Ian Fellows adapted from code by John Fox
 }
-\seealso{
-  \code{\link{cut}}
-  \code{\link{recode}} in package 'car' 
-}
 \examples{
 data<-data.frame(a=rnorm(100),b=rnorm(100),male=rnorm(100)>0)
 recode.variables(data[c("a","b")] , "Lo:0 -> 0;0:Hi -> 1;")
