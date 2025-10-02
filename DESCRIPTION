@@ -1,6 +1,6 @@
 Package: Deducer
-Version: 0.9-0
-Date: 2025-05-05
+Version: 0.9-1
+Date: 2025-10-01
 Title: A Data Analysis GUI for R
 Authors@R: c(person(given = "Ian",
                       family = "Fellows",
@@ -15,7 +15,7 @@ SystemRequirements: Java, JRI
 License: GPL-2
 URL: https://www.deducer.org/ https://www.fellstat.com
 NeedsCompilation: no
-Packaged: 2025-05-05 20:56:13 UTC; ianfellows
+Packaged: 2025-10-01 20:53:21 UTC; ianfellows
 Author: Ian Fellows [aut, cre]
 Repository: CRAN
-Date/Publication: 2025-05-07 13:50:06 UTC
+Date/Publication: 2025-10-02 05:40:02 UTC

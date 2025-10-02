@@ -3,7 +3,7 @@ import(rJava)
 import(JGR)
 import(MASS)
 import(car)
-import(e1071)
+import(e1071, except=element)
 import(effects)
 import(foreign)
 importFrom(scales, ContinuousRange,

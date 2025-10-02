@@ -1,5 +1,5 @@
-5df4501f8dc7abfff2fb1f9c71ae3965 *DESCRIPTION
-2619da6bfa68e3017d44d6a56bab2362 *NAMESPACE
+6560eee11742b3f4c7169e4b149d45a0 *DESCRIPTION
+5310e35ba98677ab28d30c8e389023f2 *NAMESPACE
 c63b854447fc0d7c4a31a598bb3bdc7d *NEWS
 c823922131f68f7ef7f18d004d9580c2 *R/addMenu.R
 5050d2007f21d33e7f0728ebfabeea5f *R/contingency.tables.R
@@ -26,14 +26,14 @@ ee6e24388d2dc31c700d97852605e290 *R/rocplot.R
 afa23822f9b85759bdfefc1f7de204af *R/util.R
 f9f4df3bebb4fb76fd28615af4d9521b *R/zzz.R
 a2a525e1ba7d8436fe94ceea9584af82 *inst/CITATION
-8fd69721c1c126937ab4cd06dee3a4e8 *inst/java/deducer.jar
+41a24302b2f86cd6e0a436142f091430 *inst/java/deducer.jar
 fa10ce35f06b9f7642916d8dc4b764ea *inst/java/quaqua.jar
 da0296feee954c25341b45fe1b458da0 *inst/java/quaqua/libquaqua.jnilib
 985c715e693a526514806942c1640b4e *inst/java/quaqua/libquaqua64.jnilib
 ae06ccac31a9f65803531cc748e95d32 *java/org/JGR.jar
 ff6152f0b5dfe7458f40e70f4ee17342 *java/org/JRI.jar
 3d691044ff79ba19bdf5ce307e855002 *java/org/MRJstubs.jar
-8fd69721c1c126937ab4cd06dee3a4e8 *java/org/deducer.jar
+41a24302b2f86cd6e0a436142f091430 *java/org/deducer.jar
 a3af472ddcbe6aabcb4b0736161d6c5a *java/org/ibase.jar
 8a95967552e16fa36794d945f75b51b0 *java/org/iplots.jar
 8831d51a336b90f976d017c8993a4b79 *java/org/javaGD.jar
